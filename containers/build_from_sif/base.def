@@ -1,0 +1,26 @@
+Bootstrap: docker
+From: nvidia/cuda:12.6.3-base-ubuntu24.04
+
+%files
+    ../build_from_def/gromacs-2025.3.tar.gz /gromacs-2025.3.tar.gz
+
+%environment
+    export LC_ALL=C
+    export PATH="/alphafold3_venv/bin:/hmmer/bin:/bin:/usr/bin:$PATH"
+    export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
+    export XLA_PYTHON_CLIENT_PREALLOCATE=true
+    export XLA_CLIENT_MEM_FRACTION=0.95
+
+%post
+    #which nvcc 
+    apt-get -y update
+    apt-get install --yes --quiet python3.12 python3-pip python3.12-venv python3.12-dev
+    apt-get install --yes --quiet git wget gcc g++ make zlib1g-dev zstd patch libgl1-mesa-dev libglu1-mesa-dev libglew-dev
+
+    mkdir -p /usr/software && cd /usr/software
+    mv /gromacs-2025.3.tar.gz . && tar -xf gromacs-2025.3.tar.gz && rm gromacs-2025.3.tar.gz
+    wget "https://github.com/plumed/plumed2/archive/refs/tags/v2.10.0.tar.gz" -O plumed2.10.tar.gz && tar -xf plumed2.10.tar.gz && rm plumed2.10.tar.gz
+    mv gromacs* gromacs_src && mv plumed* plumed_src
+    
+%runscript
+    echo "OK"
