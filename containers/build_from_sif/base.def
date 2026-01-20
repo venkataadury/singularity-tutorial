@@ -15,7 +15,7 @@ From: nvidia/cuda:12.6.3-base-ubuntu24.04
     #which nvcc 
     apt-get -y update
     apt-get install --yes --quiet python3.12 python3-pip python3.12-venv python3.12-dev
-    apt-get install --yes --quiet git wget gcc g++ make zlib1g-dev zstd patch libgl1-mesa-dev libglu1-mesa-dev libglew-dev
+    apt-get install --yes --quiet git wget gcc g++ make zlib1g-dev zstd patch libgl1-mesa-dev libglu1-mesa-dev libglew-dev vim
 
     mkdir -p /usr/software && cd /usr/software
     mv /gromacs-2025.3.tar.gz . && tar -xf gromacs-2025.3.tar.gz && rm gromacs-2025.3.tar.gz
