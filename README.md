@@ -1,6 +1,6 @@
 # About (Containers & Singularity)
 Using the singularity container environment - Compile once, run anywhere. Leverage the power of container to seamlessly move software between systems.
-Singularity is a containerization software designed to run natively only on a linux kernel. Singularity is open source and can be compiled using [go](https://go.dev)
+Singularity is a containerization software designed to run natively only on a linux kernel. Singularity is [open source](https://github.com/sylabs/singularity) and can be compiled using [go](https://go.dev)
 
 # What are containers?
 Containers are encapsulating environments (similar to virtual environments created by miniconda for python), but are more extensive containing the entire base operating system files as well. As a result, programs packaged in a container do not depend on the parent computer's library or previous software installations for anything. This means copying a container over to a new system is all that is required to transfer even the most complex of programs
@@ -26,4 +26,21 @@ Given the immense size and time taken to build each container, they cannot be us
 3. Experimenting with requirements: If you don't know what exact requirements a package has and do not want to mess up you local system packages, containers provide a convienient playground that will not affect your base system. If you ruin you container, just delete and start again! 
 4. Old software: Very old software that uses deprecated or very antequated libraries benefit from containerization as they are usually much smaller and will not break with future system updates
 
+# Installation
+As discussed, singularity runs natively on linux. This library provides solutions to run singularity on linux computers and Macbooks (Apple Silicon). If you are using a windows PC, follow [this](https://docs.sylabs.io/guides/3.0/user-guide/installation.html#setup). It is very similar to Mac, except it uses the default AMD64 architecture instead of ARM64 (check your computer's chipset).
 
+## On linux
+See [this link](https://docs.sylabs.io/guides/3.0/user-guide/installation.html#install-on-linux) on the original website for more information. Here, `setup_linux.sh` is designed for ubuntu systems. If you use a different distribution, use your own package manager to install the dependences highlighted in this script, and continue the same steps as in this script after.<br/>
+If you are using **Ubuntu>=22.04, just run** `./setup_linux.sh` and enter your password when prompted (installation requires admin privilages)
+
+## On Apple Silicon (Macbook)
+Since singularity only runs on linux kernels, we will emulate linux on macbooks through [VirtualBox](https://www.virtualbox.org). This also requires admin privilages to install.<br/>
+The following software will be installed by the setup script provided.
+- [Homebrew](https://brew.sh): Install 3rd party software easily on Mac
+- [Vagrant](https://developer.hashicorp.com/vagrant): A Virtual Machine manager. This is what manages our linux emulation.
+Note that though these packages may break with time, and containers built with singularity will still run on any other linux PC.
+
+The script will then download [Ubuntu for ARM](https://ubuntu.com/download/server/arm) from the vagrant library at [bento/ubuntu-22.04](https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-22.04) which is a special version of Ubuntu compatible with Apple Silicon.<br/>
+We will then go on to install singularity inside this ubuntu virtual machine using the same method as above.
+
+**To start just run**: `./setup_brew_vagrant.sh` on your apple computer.
