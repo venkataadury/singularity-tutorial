@@ -2,3 +2,4 @@ vm-*
 .vagrant
 setup.sh
 *.sif
+*_editable
