@@ -39,3 +39,13 @@ cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON -DCMAKE_INSTALL_PR
 make -j 12
 make install
 ```
+
+Again add paths as needed
+```bash
+export PATH=$PATH:/usr/software/gromacs2025/bin
+source /usr/software/gromacs2025/bin/GMXRC
+```
+
+### Build from SIF to SIF
+Finally, convert the bulky editable SIF file to a static image for quick copying, ease of use and stability:<br/>
+`sudo singularity build gmx_plmd.sif gromacs_editable && rm -rf gromacs_editable`
