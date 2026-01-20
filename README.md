@@ -17,7 +17,7 @@ Containers are encapsulating environments (similar to virtual environments creat
 - No caching: Specifically for singularity, no snapshots of the container building process are made. This means that any failure *while building* requires us to start over
 
 # Why singularity?
-There are many other containerization methods [docker](https://www.docker.com) being the most famous one. Docker requires both the making of a container and its execution to be done with *admin privilages* which is not possible when working on remote servers.\\
+There are many other containerization methods [docker](https://www.docker.com) being the most famous one. Docker requires both the making of a container and its execution to be done with *admin privilages* which is not possible when working on remote servers.<br/>
 
 # When to consider making a container?
 Given the immense size and time taken to build each container, they cannot be used for everything. A few scenarios that would benefit from containerization are:
