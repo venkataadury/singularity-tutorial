@@ -10,6 +10,7 @@ Containers are encapsulating environments (similar to virtual environments creat
 - Reliable: If a program works once, it will always work. No system upgrades or local package modifications will break it!
 - Transferable: Can be moved seamlessly between systems without requiring each system to have any other prerequisites installed
 - Accessible: Specifically for singularity, no admin privilages are needed to run a container. Copy and run!
+See more [here](https://docs.sylabs.io/guides/3.7/user-guide/introduction.html#use-cases)!
 
 ## Downsides
 - Size on disk: Container contain a snapshot of the bas operating system. Even when compressed, this makes each container several GB in size.
