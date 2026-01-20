@@ -1,6 +1,6 @@
 # About (Containers & Singularity)
-Using the singularity container environment - Compile once, run anywhere. Leverage the power of container to seamlessly move software between systems.
-Singularity is a containerization software designed to run natively only on a linux kernel. Singularity is [open source](https://github.com/sylabs/singularity) and can be compiled using [go](https://go.dev)
+Using the singularity container environment - Compile once, run anywhere. Leverage the power of containerization to seamlessly move software between systems.
+Singularity is one such software, designed to run natively only on a linux kernel. Singularity is [open source](https://github.com/sylabs/singularity) and can be compiled using [go](https://go.dev)
 
 # What are containers?
 Containers are encapsulating environments (similar to virtual environments created by miniconda for python), but are more extensive containing the entire base operating system files as well. As a result, programs packaged in a container do not depend on the parent computer's library or previous software installations for anything. This means copying a container over to a new system is all that is required to transfer even the most complex of programs
@@ -18,6 +18,7 @@ Containers are encapsulating environments (similar to virtual environments creat
 
 # Why singularity?
 There are many other containerization methods [docker](https://www.docker.com) being the most famous one. Docker requires both the making of a container and its execution to be done with *admin privilages* which is not possible when working on remote servers.<br/>
+Since singularity requires admin privilages only for *making* the container, it can be made locally once, and copied over to any server. 
 
 # When to consider making a container?
 Given the immense size and time taken to build each container, they cannot be used for everything. A few scenarios that would benefit from containerization are:
