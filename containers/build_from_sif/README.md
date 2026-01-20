@@ -18,11 +18,17 @@ In the plumed, run:
 make -j 8
 make install
 ```
-Add /usr/software/plumed2.10/bin to your PATH. Optionally, write a `sourceme.sh` file to automatically add all required paths.
+Add /usr/software/plumed2.10/ related paths:
+```bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/software/plumed2.10/lib/
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/software/plumed2.10/lib/
+export PATH=$PATH:/usr/software/plumed2.10/bin/
+```
+Optionally, write a `sourceme.sh` file to automatically add all required paths.
 
 ### Patching GROMACS
 1. Go to the gromacs folder `/usr/software/gromacs_src`
-2. `/usr/software/plumed2.10/bin/plumed patch -p` (Pick the correct GROMACS Version - 2025.\*)
+2. `plumed patch -p` (Pick the correct GROMACS Version - 2025.\*)
 3. Make sure there are no errors
 
 ### Compiling GROMACS
