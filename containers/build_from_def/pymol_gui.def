@@ -1,0 +1,31 @@
+Bootstrap: docker
+From: nvidia/cuda:12.6.3-base-ubuntu24.04
+
+%files
+    /bin/sd /sd
+
+%environment
+    export LC_ALL=C
+    export PATH="/alphafold3_venv/bin:/hmmer/bin:/bin:/usr/bin:$PATH"
+    export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
+    export XLA_PYTHON_CLIENT_PREALLOCATE=true
+    export XLA_CLIENT_MEM_FRACTION=0.95
+
+%post
+    #which nvcc 
+    apt-get -y update
+    apt-get install --yes --quiet python3.12 python3-pip python3.12-venv python3.12-dev
+    apt-get install --yes --quiet git wget gcc g++ make zlib1g-dev zstd patch libgl1-mesa-dev libglu1-mesa-dev libglew-dev
+    apt-get install --yes qtcreator qtbase5-dev qt5-qmake cmake
+
+    
+    python3 -m venv /pymol_venv
+    export PATH="/pymol_venv/bin:/bin:/usr/bin:$PATH"
+    echo $PATH && which pip3
+    pip3 install --no-cache-dir --upgrade pip
+
+    pip3 install pyqt5 pymol-open-source
+    mkdir -p /mnt_local # Reserve a mount point for the future 
+
+%runscript
+    /pymol_venv/bin/pymol
