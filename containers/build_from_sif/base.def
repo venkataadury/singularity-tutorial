@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: nvidia/cuda:12.6.3-base-ubuntu24.04
+From: nvidia/cuda:12.6.3-devel-ubuntu24.04 # devel has nvcc
 
 %files
     ../build_from_def/gromacs-2025.3.tar.gz /gromacs-2025.3.tar.gz
@@ -12,12 +12,12 @@ From: nvidia/cuda:12.6.3-base-ubuntu24.04
     export XLA_CLIENT_MEM_FRACTION=0.95
 
 %post
-    #which nvcc 
+    which nvcc # Check for nvcc (needed to compile gromacs with GPU)
     apt-get -y update
     apt-get install --yes --quiet python3.12 python3-pip python3.12-venv python3.12-dev
     apt-get install --yes --quiet git wget gcc g++ make zlib1g-dev zstd patch libgl1-mesa-dev libglu1-mesa-dev libglew-dev vim build-essential cmake
 
-    mkdir -p /usr/software && cd /usr/software
+    mkdir -p /usr/software && cd /usr/software # Pick a place to install everything
     mv /gromacs-2025.3.tar.gz . && tar -xf gromacs-2025.3.tar.gz && rm gromacs-2025.3.tar.gz
     wget "https://github.com/plumed/plumed2/archive/refs/tags/v2.10.0.tar.gz" -O plumed2.10.tar.gz && tar -xf plumed2.10.tar.gz && rm plumed2.10.tar.gz
     mv gromacs* gromacs_src && mv plumed* plumed_src
