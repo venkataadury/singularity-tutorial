@@ -18,3 +18,18 @@ In the plumed, run:
 make -j 8
 make install
 ```
+Add /usr/software/plumed2.10/bin to your PATH. Optionally, write a `sourceme.sh` file to automatically add all required paths.
+
+### Patching GROMACS
+1. Go to the gromacs folder `/usr/software/gromacs_src`
+2. `/usr/software/plumed2.10/bin/plumed patch -p` (Pick the correct GROMACS Version - 2025.\*)
+3. Make sure there are no errors
+
+### Compiling GROMACS
+Similar to the normal gromacs image, follow the following steps:
+```bash
+mkdir build && cd build
+cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON -DCMAKE_INSTALL_PREFIX=/usr/software/gromacs2025 -DGMX_GPU=CUDA -DGMX_MPI=off
+make -j 12
+make install
+```
