@@ -19,9 +19,10 @@ From: nvidia/cuda:12.6.3-base-ubuntu24.04 # Base
     python3 -m venv /pymol_venv # Make a python virtual environment (you can do this without conda)
     export PATH="/pymol_venv/bin:/bin:/usr/bin:$PATH" # Update PATH to add virtual environment
     echo $PATH && which pip3 # Check path and ensure pip3 exists as a command (useful for debugging if any future command crashes)
-    pip3 install --no-cache-dir --upgrade pip # Always use '--no-cache-dir' in containers because any cache is wasted space
+    pip3 install --no-cache-dir --upgrade pip setuptools wheel # Always use '--no-cache-dir' in containers because any cache is wasted space
 
-    pip3 install pyqt5 pymol-open-source # Install PyMol and PyQt5 (PyQt5 is the GUI software)
+    pip3 install pyqt5 --config-settings --confirm-license= --verbose # Install PyMol and PyQt5 (PyQt5 is the GUI software)
+    apt-get install --yes pymol
     mkdir -p /mnt_local # Reserve a mount point for the future
 
     echo "#!/bin/bash \n source /pymol_venv/bin/activate && pymol \$@" > /pymol_venv/bin/_pymol # Prepare an executable for launch (optional)

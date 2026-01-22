@@ -39,6 +39,7 @@ if test $? -eq 0
 then
 	echo "Seems like the install was successful. Testing"
 	singularity
+	git clone "https://github.com/venkataadury/singularity-tutorial.git"
 else
 	echo "Make or make install encountered an error"
 	exit 1

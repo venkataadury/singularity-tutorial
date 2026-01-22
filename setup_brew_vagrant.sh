@@ -17,11 +17,12 @@ fi
 echo "Done. 'brew' is installed"
 
 # Vagrant setup
+vagrant plugin install vagrant-disksize
 mkdir vm-singularity && cd vm-singularity
-export VM=bento/ubuntu-22.04 && vagrant init $VM && vagrant up
+export VM=bento/ubuntu-22.04 && cp ../Vagrantfile . && vagrant up
 if test $? -ne 0
 then
-	echo "Vagrant installation failed. Is the VM '$VM' still available?"
+	echo "Vagrant installation/setup failed. Is the VM '$VM' still available? Also check the Vagrantfile"
 	exit 1
 fi
 vagrant plugin install vagrant-scp
@@ -36,6 +37,7 @@ vagrant scp ../setup.sh /home/vagrant
 echo
 echo "**********************************"
 echo "Starting shell. Now run ./setup.sh"
+echo "Tutorial now available at /singularity-tutorial"
 echo "**********************************"
 echo
 vagrant ssh
