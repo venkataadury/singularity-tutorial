@@ -25,7 +25,4 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo docker run hello-world
 
-# Build the AF3 docker image
-sudo docker build . -t af3_docker -f docker/Dockerfile
-sudo docker run -it af3_docker # Run docker image (for automatic setup)
 cd ..
